@@ -1,0 +1,4 @@
+read article {title}
+read news article {title}
+read the news article called {title}
+
