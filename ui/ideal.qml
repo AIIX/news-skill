@@ -8,48 +8,8 @@ import Mycroft 1.0 as Mycroft
 Mycroft.DelegateBase {
     id: root
     visible: true
-    property var newsData
-    property var newsmodel: newsData.articles
-    graceTime: Infinity
-    backgroundImage: "https://source.unsplash.com/1920x1080/?+gloomy"
-    backgroundDim: 0.8
-    
-    controlBar: Control {
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        padding: Kirigami.Units.largeSpacing
-
-        background: LinearGradient {
-            start: Qt.point(0, 0)
-            end: Qt.point(0, height)
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: "transparent" }
-                GradientStop { position: 1.0; color: "black" }
-            }
-        }
-        contentItem: PageIndicator {
-            id: slideShowIndicator
-            anchors.centerIn: parent
-            currentIndex: newsSwipeView.currentIndex
-            count: newsSwipeView.count
-            delegate: Rectangle {
-                implicitWidth: Kirigami.Units.gridUnit * 0.3
-                implicitHeight: Kirigami.Units.gridUnit * 0.3
-                radius: width / 2
-                color: Kirigami.Theme.textColor
-                opacity: index === slideShowIndicator.currentIndex ? 0.65 : pressed ? 0.7 : 0.45
-                Behavior on opacity {
-                    OpacityAnimator {
-                        duration: 100
-                    }
-                }
-            }
-        }
-    }
-    
+    property var newsmodel: sessionData.newsData.articles
+        
     Timer {
         id: slideShowTimer
         interval: 5000

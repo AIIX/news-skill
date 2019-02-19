@@ -7,12 +7,8 @@ import Mycroft 1.0 as Mycroft
 
 Mycroft.ScrollableDelegate {
     id: root
-    visible: true
-    property var newsData
-    property var newsmodel: newsData.articles
-    graceTime: 80000
-    backgroundImage: "https://source.unsplash.com/1920x1080/?+gloomy"
-    backgroundDim: 0.8
+    property var newsmodel: sessionData.newsData.articles
+    skillBackgroundSource: "https://source.unsplash.com/1920x1080/?+gloomy"
     
     Kirigami.CardsGridView {
         id: newsListView

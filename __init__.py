@@ -26,10 +26,11 @@ class NewsSkill(MycroftSkill):
         newsAPIURL = 'https://newsapi.org/v2/top-headlines?country=in&apiKey=a1091945307b434493258f3dd6f36698'.format(newsLang)
         newsAPIRespone = requests.get(newsAPIURL)
         newsItems = newsAPIRespone.json()
-        self.enclosure.bus.emit(Message("metadata", {"type": "news-skill/resting", "newsData": newsItems}))
+        self.gui["newsData"] = newsItems
+        self.gui.show_page = "ideal.qml"
         
     @intent_file_handler('get.latest.news.intent')
-    def handle_get_latest_news_intent(self, message):
+   1 def handle_get_latest_news_intent(self, message):
         """ 
         Get News and Read Title
         """
@@ -41,7 +42,8 @@ class NewsSkill(MycroftSkill):
         newsAPIRespone = requests.get(newsAPIURL)
         newsItems = newsAPIRespone.json()
         self.speak("Today's top news items")
-        self.enclosure.bus.emit(Message("metadata", {"type": "news-skill", "newsData": newsItems}))
+        self.gui["newsData"] = newsItems
+        self.gui.show_page = "newscardspage.qml"
         for x in newsItems['articles']:
             newsSource = x['source']['name']
             newsTitle = x['title']
